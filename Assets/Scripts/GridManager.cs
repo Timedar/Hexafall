@@ -4,7 +4,19 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using System.Linq;
+using DG.Tweening;
 
+[System.Serializable]
+public class HexGrid
+{
+	[HideInInspector] public string name;
+	public List<Hexbehaviour> gridElementList = new List<Hexbehaviour>();
+
+	public HexGrid(int rowNumber)
+	{
+		this.name = $"Row {rowNumber}";
+	}
+}
 
 public class GridManager : MonoBehaviour
 {
@@ -15,19 +27,23 @@ public class GridManager : MonoBehaviour
 	[SerializeField] private Vector2 offsetRow = new Vector2(0.85f, 1.45f);
 	[SerializeField, Range(4, 50)] private int elementsInRow = 4;
 	[SerializeField, Range(4, 50)] private int rows = 4;
-	[SerializeField] private List<List<Hexbehaviour>> gridElementList = new List<List<Hexbehaviour>>();
 
-	[SerializeField] public List<List<Hexbehaviour>> GridElementList => gridElementList;
+	[Header("Elements in rows and column's")]
+	[SerializeField] private List<HexGrid> hexGridList = new List<HexGrid>();
+
+	public List<HexGrid> HexGridList => hexGridList;
+	public Hexbehaviour StartPoint => startPoint;
+
 	private Vector3 lastGrid;
+	private static Hexbehaviour startPoint;
 
-	public Hexbehaviour StartPoint = null;
-
-	private void Start()
+	private void Awake()
 	{
-		StartPoint = transform.GetChild(transform.childCount - 1).GetComponentsInChildren<Hexbehaviour>().First(x => x.CorrectRoute);
+		startPoint = hexGridList[hexGridList.Count - 1].gridElementList.First(x => x.CorrectRoute);
 	}
 
-	// #if UNITY_EDITOR
+
+#if UNITY_EDITOR
 	public void GenerateHexMap()
 	{
 		SetUpCamToGrid();
@@ -36,19 +52,19 @@ public class GridManager : MonoBehaviour
 			DestroyImmediate(transform.GetChild(0).gameObject);
 
 		lastGrid = Vector3.zero;
-		EditorUtility.SetDirty(this.gameObject);
-		gridElementList.Clear();
+
+		hexGridList.Clear();
 
 		for (int j = 1; j < rows + 1; j++)
 		{
-			gridElementList.Add(new List<Hexbehaviour>());
+			hexGridList.Add(new HexGrid(j - 1));
 
 			var container = CreateContainerForRow(j);
 			for (int i = 0; i < elementsInRow; i++)
 			{
 				Hexbehaviour singleGrid = PrefabUtility.InstantiatePrefab(gridObject as Hexbehaviour, container.transform) as Hexbehaviour;
 
-				gridElementList[j - 1].Add(singleGrid);
+				hexGridList[j - 1].gridElementList.Add(singleGrid);
 
 				singleGrid.SetHexInfo(j - 1, i);
 
@@ -62,18 +78,17 @@ public class GridManager : MonoBehaviour
 			lastGrid = Vector3.zero + new Vector3(offsetRow.x * (j % 2), offsetRow.y * j, 0);
 		}
 
-		foreach (var row in gridElementList)
+		foreach (var row in hexGridList)
 		{
-			foreach (var gridElement in row)
+			foreach (var gridElement in row.gridElementList)
 			{
-				gridElement.SetNeighborInfo(gridElementList);
+				gridElement.SetNeighborInfo(hexGridList);
 			}
 		}
 
 		Debug.Log("Done Generating");
-		Debug.Log(GridElementList.Count);
 	}
-	// #endif
+#endif
 
 	private void SetUpCamToGrid()
 	{
