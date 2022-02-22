@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
+using System.Linq;
 
 public class Raycasting : MonoBehaviour
 {
 	[SerializeField] private Transform player = null;
 	[SerializeField] private Hexbehaviour currentHex = null;
-
+	[SerializeField] private GridManager gridManager = null;
 	private Camera cam;
 
-	private void Awake()
+	public event Action boom;
+
+	private void Start()
 	{
 		cam = Camera.main;
+		currentHex = gridManager.StartPoint;
+		player.transform.position = currentHex.transform.position;
 	}
 
 	void Update()
@@ -26,14 +32,23 @@ public class Raycasting : MonoBehaviour
 			{
 				var hexbehaviour = hit.transform.parent.GetComponent<Hexbehaviour>();
 
-				if (currentHex.CheckHex(hexbehaviour))
+				if (currentHex.isAvailble(hexbehaviour))
 				{
 					player.DOMove(hexbehaviour.transform.position, 1);
 					currentHex = hexbehaviour;
+
+					if (currentHex.CheckHex())
+					{
+						var rig = player.GetComponentInChildren<Rigidbody>();
+						rig.isKinematic = false;
+						rig.AddTorque(Vector3.forward * 15);
+						rig.AddForce(Vector3.up * 5);
+					}
 				}
 			}
 		}
 	}
+
 
 	private void OnDrawGizmos()
 	{

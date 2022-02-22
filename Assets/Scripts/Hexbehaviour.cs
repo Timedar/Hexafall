@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using DG.Tweening;
 
+[System.Serializable]
 public class Hexbehaviour : MonoBehaviour
 {
+	[Header("Scene References")]
 	[SerializeField] private GameObject fineHexObject = null;
 	[SerializeField] private GameObject brokenHexObject = null;
+	[SerializeField] private Mesh gizmoDrowMesh = null;
+
+	[Header("Hex properties")]
+	[SerializeField] private int row = 0;
+	[SerializeField] private int elementInRow = 0;
+	[SerializeField] private Hexbehaviour[] neighborHexes = new Hexbehaviour[6];
+	[SerializeField] private bool correctRoute = true;
 
 	public Hexbehaviour[] NeighborHexes => neighborHexes;
-
-	[SerializeField] private Hexbehaviour[] neighborHexes = new Hexbehaviour[6];
-
-	public int row, elementInRow;
+	public bool CorrectRoute => correctRoute;
 
 	public void SetHexInfo(int row, int elementInRow)
 	{
@@ -67,11 +74,23 @@ public class Hexbehaviour : MonoBehaviour
 		BrokeHex();
 		foreach (var hexes in neighborHexes)
 		{
-			hexes?.BrokeHex();
+			DOTween.Sequence().AppendInterval(UnityEngine.Random.Range(0, 0.08f))
+								.AppendCallback(() => hexes?.BrokeHex());
 		}
 	}
 
-	public bool CheckHex(Hexbehaviour hexToCheck)
+	public bool CheckHex()
+	{
+		if (!correctRoute)
+		{
+			BrokeAround();
+			return true;
+		}
+
+		return false;
+	}
+
+	public bool isAvailble(Hexbehaviour hexToCheck)
 	{
 		if (hexToCheck == null)
 			return false;
@@ -95,8 +114,15 @@ public class Hexbehaviour : MonoBehaviour
 		return moduloResult == 0 ? -1 : 1;
 	}
 
+#if UNITY_EDITOR
 	private void OnDrawGizmos()
 	{
+		if (correctRoute)
+		{
+			Gizmos.color = Color.yellow;
+			Gizmos.DrawSphere(transform.position, 0.7f);
+		}
+
 		if (Selection.activeGameObject != transform.gameObject)
 			return;
 
@@ -105,7 +131,8 @@ public class Hexbehaviour : MonoBehaviour
 			Gizmos.color = Color.green;
 
 			if (hex != null)
-				Gizmos.DrawSphere(hex.transform.position, 0.5f);
+				Gizmos.DrawSphere(hex.transform.position, 0.3f);
 		}
 	}
+#endif
 }

@@ -11,6 +11,9 @@ public class GridManagerEditor : Editor
 		base.OnInspectorGUI();
 		GridManager gridManager = (GridManager)target;
 
+		if (GUI.changed)
+			EditorUtility.SetDirty(gridManager);
+
 		if (GUILayout.Button("Generate Map"))
 		{
 			gridManager.GenerateHexMap();
