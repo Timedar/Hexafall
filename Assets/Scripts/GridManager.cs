@@ -51,7 +51,7 @@ public class GridManager : MonoBehaviour
 				lastGrid = singleGrid.transform.localPosition;
 			}
 
-			lastGrid = Vector3.zero + new Vector3(-offsetRow.x * (j % 2), offsetRow.y * j, 0);
+			lastGrid = Vector3.zero + new Vector3(offsetRow.x * (j % 2), offsetRow.y * j, 0);
 		}
 
 		foreach (var row in GridElementList)

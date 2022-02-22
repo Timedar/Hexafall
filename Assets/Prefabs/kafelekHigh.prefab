@@ -47,6 +47,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fineHexObject: {fileID: 4201370313415836179}
   brokenHexObject: {fileID: 993531786343398720}
+  neighborHexes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   row: 0
   elementInRow: 0
 --- !u!1001 &74540517484101649
