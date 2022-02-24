@@ -27,7 +27,7 @@ public class Hexbehaviour : MonoBehaviour
 		this.elementInRow = elementInRow;
 	}
 
-	public void SetNeighborInfo(List<List<Hexbehaviour>> gridInfo)
+	public void SetNeighborInfo(List<HexGrid> gridInfo)
 	{
 		//Offset of grip
 		var moduloValue = row % 2;
@@ -39,27 +39,27 @@ public class Hexbehaviour : MonoBehaviour
 		if (row > 0)
 		{
 			if (rowCheckCondition)
-				neighborHexes[0] = gridInfo[row - 1][elementInRow + rowModifier];
+				neighborHexes[0] = gridInfo[row - 1].gridElementList[elementInRow + rowModifier];
 
 
-			neighborHexes[1] = gridInfo[row - 1][elementInRow];
+			neighborHexes[1] = gridInfo[row - 1].gridElementList[elementInRow];
 		}
 
 		//Middle row
 		if (elementInRow > 0)
-			neighborHexes[2] = gridInfo[row][elementInRow - 1];
+			neighborHexes[2] = gridInfo[row].gridElementList[elementInRow - 1];
 
-		if (elementInRow + 1 < gridInfo[row].Count)
-			neighborHexes[3] = gridInfo[row][elementInRow + 1];
+		if (elementInRow + 1 < gridInfo[row].gridElementList.Count)
+			neighborHexes[3] = gridInfo[row].gridElementList[elementInRow + 1];
 
 		//Down row
 		if (row + 1 < gridInfo.Count)
 		{
 			if (rowCheckCondition)
-				neighborHexes[4] = gridInfo[row + 1][elementInRow + rowModifier];
+				neighborHexes[4] = gridInfo[row + 1].gridElementList[elementInRow + rowModifier];
 
 
-			neighborHexes[5] = gridInfo[row + 1][elementInRow];
+			neighborHexes[5] = gridInfo[row + 1].gridElementList[elementInRow];
 		}
 	}
 
@@ -104,9 +104,9 @@ public class Hexbehaviour : MonoBehaviour
 		return false;
 	}
 
-	private bool RowCheckCondition(int moduloResult, List<List<Hexbehaviour>> gridInfo)
+	private bool RowCheckCondition(int moduloResult, List<HexGrid> gridInfo)
 	{
-		return moduloResult == 0 ? elementInRow > 0 : elementInRow + 1 < gridInfo[row].Count;
+		return moduloResult == 0 ? elementInRow > 0 : elementInRow + 1 < gridInfo[row].gridElementList.Count;
 	}
 
 	private int RowModifier(int moduloResult)
