@@ -25,8 +25,8 @@ public class GridManager : MonoBehaviour
 	[SerializeField] private Hexbehaviour gridObject = null;
 	[SerializeField] private float offsetX = 1.7f;
 	[SerializeField] private Vector2 offsetRow = new Vector2(0.85f, 1.45f);
-	[SerializeField, Range(4, 50)] private int elementsInRow = 4;
-	[SerializeField, Range(4, 50)] private int rows = 4;
+	[SerializeField, Range(1, 50)] private int elementsInRow = 4;
+	[SerializeField, Range(1, 50)] private int rows = 4;
 
 	[Header("Elements in rows and column's")]
 	[SerializeField] private List<HexGrid> hexGridList = new List<HexGrid>();
