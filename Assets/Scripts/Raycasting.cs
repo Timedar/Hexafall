@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class Raycasting : MonoBehaviour
 {
@@ -38,14 +39,22 @@ public class Raycasting : MonoBehaviour
 				if (currentHex.isAvailble(hexbehaviour))
 				{
 					player.DOMove(hexbehaviour.transform.position, 1).OnStart(() => playerAnimator.SetBool("Move", true)).OnComplete(() => playerAnimator.SetBool("Move", false));
+					player.DOLookAt(hexbehaviour.transform.position - player.transform.position, 0.3f);
 					currentHex = hexbehaviour;
 
 					if (currentHex == gridManager.EndingPoint)
-						SceneController.LoadScene(Levels.MainMenu, 2);
+					{
+						if (SceneManager.GetActiveScene().buildIndex + 1 > 6)
+						{
+							SceneController.LoadScene(Levels.MainMenu, 2);
+							return;
+						}
+						SceneController.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, 2);
+					}
 
 					if (currentHex.CheckHex())
 					{
-						SceneController.LoadScene(Levels.Lvl1, 2);
+						SceneController.LoadScene(SceneManager.GetActiveScene().buildIndex, 2);
 						var rig = player.GetComponentInChildren<Rigidbody>();
 						playerAnimator.SetBool("Grounded", false);
 						rig.isKinematic = false;

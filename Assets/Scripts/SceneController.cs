@@ -13,6 +13,14 @@ public class SceneController
 			.AppendCallback(() => SceneManager.LoadScene((int)level));
 		loadSequence.Play();
 	}
+
+	public static void LoadScene(int lvl, float delay)
+	{
+		Sequence loadSequence = DOTween.Sequence()
+			.AppendInterval(delay)
+			.AppendCallback(() => SceneManager.LoadScene(lvl));
+		loadSequence.Play();
+	}
 }
 public enum Levels
 {
