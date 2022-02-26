@@ -10,6 +10,7 @@ public class Raycasting : MonoBehaviour
 	[SerializeField] private Transform player = null;
 	[SerializeField] private Hexbehaviour currentHex = null;
 	[SerializeField] private GridManager gridManager = null;
+
 	private Camera cam;
 	private Animator playerAnimator;
 
@@ -39,9 +40,14 @@ public class Raycasting : MonoBehaviour
 					player.DOMove(hexbehaviour.transform.position, 1).OnStart(() => playerAnimator.SetBool("Move", true)).OnComplete(() => playerAnimator.SetBool("Move", false));
 					currentHex = hexbehaviour;
 
+					if (currentHex == gridManager.EndingPoint)
+						SceneController.LoadScene(Levels.MainMenu, 2);
+
 					if (currentHex.CheckHex())
 					{
+						SceneController.LoadScene(Levels.Lvl1, 2);
 						var rig = player.GetComponentInChildren<Rigidbody>();
+						playerAnimator.SetBool("Grounded", false);
 						rig.isKinematic = false;
 						rig.AddTorque(Vector3.forward * 15);
 						rig.AddForce(Vector3.up * 5);

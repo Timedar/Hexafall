@@ -33,20 +33,23 @@ public class GridManager : MonoBehaviour
 
 	public List<HexGrid> HexGridList => hexGridList;
 	public Hexbehaviour StartPoint => startPoint;
+	public Hexbehaviour EndingPoint => endingPoint;
 
 	private Vector3 lastGrid;
 	private static Hexbehaviour startPoint;
+	private static Hexbehaviour endingPoint;
 
 	private void Awake()
 	{
 		startPoint = hexGridList[hexGridList.Count - 1].gridElementList.First(x => x.CorrectRoute);
+		endingPoint = hexGridList[0].gridElementList.First(x => x.CorrectRoute);
 	}
 
 
 #if UNITY_EDITOR
 	public void GenerateHexMap()
 	{
-		SetUpCamToGrid();
+		// SetUpCamToGrid();
 
 		while (this.transform.childCount > 0)
 			DestroyImmediate(transform.GetChild(0).gameObject);

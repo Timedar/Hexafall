@@ -51,9 +51,10 @@ Material:
     - Vector1_031d8bd540b54ce494f98311ae9e5bbb: 1.96
     - Vector1_43864c8ec84b41a59938ee0fd033e373: 0.06
     - Vector1_6297546a0b0d415a996b35b6aee6ca6e: -2.11
-    - Vector1_683f101e53b745a9834b6c548d44edc3: 86.27
+    - Vector1_683f101e53b745a9834b6c548d44edc3: 22.24
     - Vector1_843e219ac5d94c8f8592be39db3c65ed: 1
     - Vector1_ef6720bad2b94773a2aa176d340973d4: 0.28
+    - _BloodTrail: 1
     m_Colors:
     - Color_0c2308d1b0a54c89a36ab613440dcd21: {r: 0.21698111, g: 0.1934407, b: 0.1934407, a: 1}
     - Color_1f44b85759fb40f293c68e309941caed: {r: 0, g: 0, b: 0, a: 0}
