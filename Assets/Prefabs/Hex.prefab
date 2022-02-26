@@ -48,7 +48,7 @@ MonoBehaviour:
   fineHexObject: {fileID: 4201370313415836179}
   brokenHexObject: {fileID: 993531786343398720}
   gizmoDrowMesh: {fileID: 771982850151570326, guid: 9b6808053d6455f48bbb3c038b42b866, type: 3}
-  row: 0
+  row: 11
   elementInRow: 0
   neighborHexes:
   - {fileID: 0}
@@ -315,3 +315,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9b6808053d6455f48bbb3c038b42b866, type: 3}
   m_PrefabInstance: {fileID: 3931411421174759234}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &617270793
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4201370313415836179}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 771982850151570326, guid: 9b6808053d6455f48bbb3c038b42b866, type: 3}
