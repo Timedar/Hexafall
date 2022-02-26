@@ -15,7 +15,8 @@ public class Raycasting : MonoBehaviour
 	private Camera cam;
 	private Animator playerAnimator;
 
-	public event Action boom;
+	public event Action<Vector3> beakHex;
+	public event Action<Vector3> footstepSound;
 
 	private void Start()
 	{
@@ -23,6 +24,7 @@ public class Raycasting : MonoBehaviour
 		currentHex = gridManager.StartPoint;
 		player.transform.position = currentHex.transform.position;
 		playerAnimator = player.GetComponentInChildren<Animator>();
+		currentHex.ShowNearbyHexes(true);
 	}
 
 	void Update()
@@ -39,8 +41,12 @@ public class Raycasting : MonoBehaviour
 				if (currentHex.isAvailble(hexbehaviour))
 				{
 					player.DOMove(hexbehaviour.transform.position, 1).OnStart(() => playerAnimator.SetBool("Move", true)).OnComplete(() => playerAnimator.SetBool("Move", false));
-					player.DOLookAt(hexbehaviour.transform.position - player.transform.position, 0.3f);
+					player.LookAt(hexbehaviour.transform.position);
+					footstepSound.Invoke(player.transform.position);
+
+					currentHex.ShowNearbyHexes(false);
 					currentHex = hexbehaviour;
+					currentHex.ShowNearbyHexes(true);
 
 					if (currentHex == gridManager.EndingPoint)
 					{
@@ -54,6 +60,7 @@ public class Raycasting : MonoBehaviour
 
 					if (currentHex.CheckHex())
 					{
+						beakHex?.Invoke(currentHex.transform.position);
 						SceneController.LoadScene(SceneManager.GetActiveScene().buildIndex, 2);
 						var rig = player.GetComponentInChildren<Rigidbody>();
 						playerAnimator.SetBool("Grounded", false);
@@ -69,13 +76,24 @@ public class Raycasting : MonoBehaviour
 
 	private void OnDrawGizmos()
 	{
+
 		if (currentHex == null)
 			return;
 
+		Gizmos.color = Color.red;
+		Gizmos.DrawSphere(currentHex.transform.position, 0.6f);
+		Gizmos.color = Color.red;
+		Gizmos.DrawSphere(player.transform.position, 0.6f);
+
+		Gizmos.color = Color.green;
+		ShowNearbyHexesGizmo();
+	}
+
+	private void ShowNearbyHexesGizmo()
+	{
 		foreach (var hex in currentHex.NeighborHexes)
 		{
 			Gizmos.color = Color.green;
-
 			if (hex != null)
 				Gizmos.DrawSphere(hex.transform.position, 0.5f);
 		}

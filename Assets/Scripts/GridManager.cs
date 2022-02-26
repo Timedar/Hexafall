@@ -41,7 +41,17 @@ public class GridManager : MonoBehaviour
 
 	private void Awake()
 	{
+		foreach (var grid in hexGridList)
+		{
+			foreach (var hex in grid.gridElementList)
+			{
+				hex.gameObject.SetActive(false);
+			}
+		}
+
 		startPoint = hexGridList[hexGridList.Count - 1].gridElementList.First(x => x.CorrectRoute);
+		startPoint.gameObject.SetActive(true);
+
 		endingPoint = hexGridList[0].gridElementList.First(x => x.CorrectRoute);
 	}
 
