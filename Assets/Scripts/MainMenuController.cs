@@ -20,6 +20,6 @@ public class MainMenuController : MonoBehaviour
 
 	public void LoadGame()
 	{
-		fadeImage.DOFade(true ? 1 : 0, fadeTime).OnComplete(() => SceneController.LoadScene(Levels.Lvl1, 0));
+		fadeImage.DOFade(1, fadeTime).OnComplete(() => SceneController.LoadScene(Levels.Lvl1, 0));
 	}
 }

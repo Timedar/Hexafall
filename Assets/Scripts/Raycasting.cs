@@ -11,12 +11,14 @@ public class Raycasting : MonoBehaviour
 	[SerializeField] private Transform player = null;
 	[SerializeField] private Hexbehaviour currentHex = null;
 	[SerializeField] private GridManager gridManager = null;
-
+	[SerializeField]
+	private FadeController fadeController = null;
 	private Camera cam;
 	private Animator playerAnimator;
 
 	public event Action<Vector3> beakHex;
 	public event Action<Vector3> footstepSound;
+	public bool alive = true;
 
 	private void Start()
 	{
@@ -29,6 +31,9 @@ public class Raycasting : MonoBehaviour
 
 	void Update()
 	{
+		if (!alive)
+			return;
+
 		RaycastHit hit;
 		Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
@@ -52,6 +57,7 @@ public class Raycasting : MonoBehaviour
 					{
 						if (SceneManager.GetActiveScene().buildIndex + 1 > 6)
 						{
+							fadeController.TurnFade(true);
 							SceneController.LoadScene(Levels.MainMenu, 2);
 							return;
 						}
@@ -60,6 +66,7 @@ public class Raycasting : MonoBehaviour
 
 					if (currentHex.CheckHex())
 					{
+						alive = false;
 						beakHex?.Invoke(currentHex.transform.position);
 						SceneController.LoadScene(SceneManager.GetActiveScene().buildIndex, 2);
 						var rig = player.GetComponentInChildren<Rigidbody>();

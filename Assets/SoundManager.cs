@@ -41,6 +41,8 @@ public class SoundManager : MonoBehaviour
 						audioSource.Stop();
 				}
 			);
+
+		Destroy(audioSource, 10);
 	}
 
 }
