@@ -21,7 +21,27 @@ ModelImporter:
   - first:
       74: -8853002992149753118
     second: Ref
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Akai_MAT
+    second: {fileID: 2100000, guid: 6b69e118c70c1a845984a79f69f1b61c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body_MAT
+    second: {fileID: 2100000, guid: fa4165304673a364c98359b722d0aa81, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EyeSpec_MAT
+    second: {fileID: 2100000, guid: e23280d3fbfe19f499cd65482590b0ce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lashes_MAT
+    second: {fileID: 2100000, guid: 38eefd527a8470149b8fef7642c126a5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
