@@ -384,6 +384,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1307454237, guid: 6be991693826d964b8ea8856228aef2b, type: 3}
+      propertyPath: btn
+      value: 
+      objectReference: {fileID: 1531769716}
+    - target: {fileID: 1307454237, guid: 6be991693826d964b8ea8856228aef2b, type: 3}
       propertyPath: correctTrailWay.Array.size
       value: 8
       objectReference: {fileID: 0}
@@ -1825,6 +1829,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1707046080, guid: afdd94f124f76a24c9ae99c4ae7e0d88, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1351166566}
+    - target: {fileID: 1707046080, guid: afdd94f124f76a24c9ae99c4ae7e0d88, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSpeedOfFox
+      objectReference: {fileID: 0}
     - target: {fileID: 8059228315760647219, guid: afdd94f124f76a24c9ae99c4ae7e0d88, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -1927,6 +1939,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afdd94f124f76a24c9ae99c4ae7e0d88, type: 3}
+--- !u!114 &1531769716 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1707046080, guid: afdd94f124f76a24c9ae99c4ae7e0d88, type: 3}
+  m_PrefabInstance: {fileID: 1531769715}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1573139390
 GameObject:
   m_ObjectHideFlags: 0

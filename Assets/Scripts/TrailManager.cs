@@ -48,8 +48,11 @@ public class TrailManager : MonoBehaviour
 		}
 
 		trail.gameObject.SetActive(false);
-		ghostFoxFinishedRun.Invoke();
-		btn.gameObject.SetActive(false);
+		ghostFoxFinishedRun?.Invoke();
+
+		if (btn != null)
+			btn.gameObject.SetActive(false);
+
 		yield return null;
 
 	}

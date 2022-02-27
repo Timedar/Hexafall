@@ -9808,6 +9808,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetSpeedOfFox
       objectReference: {fileID: 0}
+    - target: {fileID: 1707046080, guid: afdd94f124f76a24c9ae99c4ae7e0d88, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 0.08
+      objectReference: {fileID: 0}
     - target: {fileID: 8059228316816950874, guid: afdd94f124f76a24c9ae99c4ae7e0d88, type: 3}
       propertyPath: m_Pivot.x
       value: 0

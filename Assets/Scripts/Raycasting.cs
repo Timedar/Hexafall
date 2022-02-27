@@ -19,6 +19,7 @@ public class Raycasting : MonoBehaviour
 
 	public event Action<Vector3> beakHex;
 	public event Action<Vector3> footstepSound;
+	public event Action endGame;
 	public bool alive = true;
 	public bool canMove = false;
 
@@ -67,6 +68,9 @@ public class Raycasting : MonoBehaviour
 					if (endGameHex != null)
 						if (endGameHex == currentHex)
 						{
+							canMove = false;
+							endGame.Invoke();
+							currentHex.ShowNearbyHexes(false);
 							playerAnimator.SetBool("mapFinished", true);
 						}
 
