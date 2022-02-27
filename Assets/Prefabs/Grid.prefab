@@ -49,3 +49,4 @@ MonoBehaviour:
   offsetRow: {x: 0.85, y: 1.45}
   elementsInRow: 9
   rows: 9
+  hexGridList: []
