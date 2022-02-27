@@ -11,14 +11,16 @@ public class Raycasting : MonoBehaviour
 	[SerializeField] private Transform player = null;
 	[SerializeField] private Hexbehaviour currentHex = null;
 	[SerializeField] private GridManager gridManager = null;
-	[SerializeField]
-	private FadeController fadeController = null;
+	[SerializeField] private Hexbehaviour endGameHex = null;
+	[SerializeField] private FadeController fadeController = null;
+	[SerializeField] private TrailManager trailManager = null;
 	private Camera cam;
 	private Animator playerAnimator;
 
 	public event Action<Vector3> beakHex;
 	public event Action<Vector3> footstepSound;
 	public bool alive = true;
+	public bool canMove = false;
 
 	private void Start()
 	{
@@ -27,11 +29,20 @@ public class Raycasting : MonoBehaviour
 		player.transform.position = currentHex.transform.position;
 		playerAnimator = player.GetComponentInChildren<Animator>();
 		currentHex.ShowNearbyHexes(true);
+
+		if (trailManager == null)
+		{
+			Debug.LogWarning("Trail manager is null on Raycast script! No Ghost trail!");
+			canMove = true;
+			return;
+		}
+
+		trailManager.ghostFoxFinishedRun += () => canMove = true;
 	}
 
 	void Update()
 	{
-		if (!alive)
+		if (!alive || !canMove)
 			return;
 
 		RaycastHit hit;
@@ -52,6 +63,12 @@ public class Raycasting : MonoBehaviour
 					currentHex.ShowNearbyHexes(false);
 					currentHex = hexbehaviour;
 					currentHex.ShowNearbyHexes(true);
+
+					if (endGameHex != null)
+						if (endGameHex == currentHex)
+						{
+							playerAnimator.SetBool("mapFinished", true);
+						}
 
 					if (currentHex == gridManager.EndingPoint)
 					{
