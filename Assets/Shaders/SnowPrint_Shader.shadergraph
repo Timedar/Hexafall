@@ -965,7 +965,7 @@
     },
     "m_PreviewData": {
         "serializedMesh": {
-            "m_SerializedMesh": "{\"mesh\":{\"instanceID\":0}}",
+            "m_SerializedMesh": "{\"mesh\":{\"fileID\":1149198649271804147,\"guid\":\"003dc4e05aaa8e2469c060121d5dc48e\",\"type\":3}}",
             "m_Guid": ""
         }
     },
@@ -997,7 +997,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 0.014999999664723874,
+    "m_Value": 1.9600000381469727,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -1245,7 +1245,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "X",
     "m_StageCapability": 3,
-    "m_Value": 2.0,
+    "m_Value": 1.2400000095367432,
     "m_DefaultValue": 0.0,
     "m_Labels": []
 }
@@ -2348,7 +2348,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 0.30000001192092898,
+    "m_Value": 0.05999999865889549,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -2808,7 +2808,7 @@
     "m_ShaderOutputName": "A",
     "m_StageCapability": 3,
     "m_Value": {
-        "e00": 0.006000000052154064,
+        "e00": -0.5899999737739563,
         "e01": 0.0,
         "e02": 0.0,
         "e03": 0.0,
@@ -3283,7 +3283,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 0.5799999833106995,
+    "m_Value": -0.14000000059604646,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -3497,7 +3497,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 50.29999923706055,
+    "m_Value": 86.2699966430664,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -3969,8 +3969,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -633.0,
-            "y": 1950.0,
+            "x": -613.9999389648438,
+            "y": 1933.0,
             "width": 145.0,
             "height": 130.0
         }
@@ -4086,11 +4086,11 @@
     },
     "m_Name": "BloodTrail",
     "m_DefaultReferenceName": "Vector1_843e219ac5d94c8f8592be39db3c65ed",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_BloodTrail",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
+    "hlslDeclarationOverride": 1,
     "m_Hidden": false,
     "m_Value": 0.0,
     "m_FloatType": 1,
@@ -6596,9 +6596,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -667.0000610351563,
-            "y": 1305.0001220703125,
-            "width": 145.0,
+            "x": -648.0000610351563,
+            "y": 1260.0,
+            "width": 145.00001525878907,
             "height": 130.0
         }
     },
@@ -6710,7 +6710,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 2.9800000190734865,
+    "m_Value": -2.109999895095825,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,

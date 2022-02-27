@@ -79,6 +79,15 @@ public class Hexbehaviour : MonoBehaviour
 		}
 	}
 
+	public void ShowNearbyHexes(bool value)
+	{
+		foreach (var hex in this.NeighborHexes)
+		{
+			if (hex != null)
+				hex.gameObject.SetActive(value);
+		}
+	}
+
 	public bool CheckHex()
 	{
 		if (!correctRoute)
