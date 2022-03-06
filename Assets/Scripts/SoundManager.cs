@@ -17,13 +17,23 @@ public class SoundManager : MonoBehaviour
 	[SerializeField] private List<AudioMixerGroup> audioMixers = null;
 
 	[Header("Event References")]
-	[SerializeField] private Raycasting camController = null;
+	[SerializeField] public Raycasting camController = null;
+	[SerializeField] private PlayerDirectorControlller playerDirector = null;
 
 	private void Start()
+	{
+		DontDestroyOnLoad(this.gameObject);
+	}
+
+	public void Init()
 	{
 		camController.beakHex += (position) => PlaySoundWithDelay(deathClip, position, 1, 0.3f, 1);
 		camController.beakHex += (position) => PlaySoundWithDelay(bokeIceClip, position, 3);
 		camController.footstepSound += (position) => PlaySoundWithDelay(snowFootsClipList[Random.Range(0, snowFootsClipList.Count)], position, 0.7f, 0, 2);
+
+		playerDirector = FindObjectOfType<PlayerDirectorControlller>();
+		if (playerDirector != null)
+			playerDirector.startFinaLevelEvent += () => ChangeGlobalSound(endingSongClip);
 	}
 
 	public void PlaySoundWithDelay(AudioClip clip, Vector3 spawnPosition, float length = -1, float delay = 0, int mixerVariant = 0)
@@ -45,4 +55,9 @@ public class SoundManager : MonoBehaviour
 		Destroy(audioSource, 10);
 	}
 
+	public void ChangeGlobalSound(AudioClip clip)
+	{
+		globalAudioSource.clip = clip;
+		globalAudioSource.Play();
+	}
 }

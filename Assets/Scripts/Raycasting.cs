@@ -30,6 +30,10 @@ public class Raycasting : MonoBehaviour
 		player.transform.position = currentHex.transform.position;
 		playerAnimator = player.GetComponentInChildren<Animator>();
 		currentHex.ShowNearbyHexes(true);
+		var sound = FindObjectOfType<SoundManager>();
+		sound.camController = this;
+		sound.Init();
+
 
 		if (trailManager == null)
 		{

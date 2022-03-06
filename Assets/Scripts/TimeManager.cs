@@ -6,6 +6,10 @@ public class TimeManager : MonoBehaviour
 {
 	[SerializeField] private TextMeshProUGUI textMeshComponent = null;
 	private float timeToDisplay = 0;
+	private void Awake()
+	{
+		DontDestroyOnLoad(this.gameObject);
+	}
 
 	private void Update()
 	{
