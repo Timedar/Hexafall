@@ -8,7 +8,7 @@ using DG.Tweening;
 
 public class PlayerDirectorControlller : MonoBehaviour
 {
-	[SerializeField] private Raycasting camController = null;
+	[SerializeField] private GameStatusController gameStatusController = null;
 	[SerializeField] private GameObject enviroGameobject = null;
 	[SerializeField] private CinemachineVirtualCamera foxFocusCam = null;
 	[SerializeField] private CinemachineVirtualCamera glassBallFocusCam = null;
@@ -17,8 +17,8 @@ public class PlayerDirectorControlller : MonoBehaviour
 	public event Action startFinaLevelEvent;
 	private void Start()
 	{
-		camController.endGame += () => EndingSequence().Play();
-		startFinaLevelEvent.Invoke();
+		gameStatusController.endGame += () => EndingSequence().Play();
+		startFinaLevelEvent?.Invoke();
 	}
 
 	private Sequence EndingSequence()

@@ -31,7 +31,7 @@ public class Raycasting : MonoBehaviour
 		playerAnimator = player.GetComponentInChildren<Animator>();
 		currentHex.ShowNearbyHexes(true);
 		var sound = FindObjectOfType<SoundManager>();
-		sound.camController = this;
+		// sound.gameStatusController = this;
 		sound.Init();
 
 
@@ -59,7 +59,7 @@ public class Raycasting : MonoBehaviour
 			{
 				var hexbehaviour = hit.transform.parent.GetComponent<Hexbehaviour>();
 
-				if (currentHex.isAvailble(hexbehaviour))
+				if (currentHex.IsAvailble(hexbehaviour))
 				{
 					player.DOMove(hexbehaviour.transform.position, 1).OnStart(() => playerAnimator.SetBool("Move", true)).OnComplete(() => playerAnimator.SetBool("Move", false));
 					player.LookAt(hexbehaviour.transform.position);
@@ -108,7 +108,6 @@ public class Raycasting : MonoBehaviour
 
 	private void OnDrawGizmos()
 	{
-
 		if (currentHex == null)
 			return;
 

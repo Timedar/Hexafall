@@ -99,7 +99,7 @@ public class Hexbehaviour : MonoBehaviour
 		return false;
 	}
 
-	public bool isAvailble(Hexbehaviour hexToCheck)
+	public bool IsAvailble(Hexbehaviour hexToCheck)
 	{
 		if (hexToCheck == null)
 			return false;

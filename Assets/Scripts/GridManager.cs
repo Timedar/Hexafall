@@ -21,7 +21,6 @@ public class HexGrid
 public class GridManager : MonoBehaviour
 {
 	[Header("Parameter")]
-	[SerializeField] private Camera mainCamera;
 	[SerializeField] private Hexbehaviour gridObject = null;
 	[SerializeField] private float offsetX = 1.7f;
 	[SerializeField] private Vector2 offsetRow = new Vector2(0.85f, 1.45f);
@@ -31,7 +30,6 @@ public class GridManager : MonoBehaviour
 	[Header("Elements in rows and column's")]
 	[SerializeField] private List<HexGrid> hexGridList = new List<HexGrid>();
 
-	public List<HexGrid> HexGridList => hexGridList;
 	public Hexbehaviour StartPoint => startPoint;
 	public Hexbehaviour EndingPoint => endingPoint;
 
@@ -49,6 +47,11 @@ public class GridManager : MonoBehaviour
 			}
 		}
 
+		SetupStartEndPoints();
+	}
+
+	private void SetupStartEndPoints()
+	{
 		startPoint = hexGridList[hexGridList.Count - 1].gridElementList.First(x => x.CorrectRoute);
 		startPoint.gameObject.SetActive(true);
 
@@ -59,8 +62,6 @@ public class GridManager : MonoBehaviour
 #if UNITY_EDITOR
 	public void GenerateHexMap()
 	{
-		// SetUpCamToGrid();
-
 		while (this.transform.childCount > 0)
 			DestroyImmediate(transform.GetChild(0).gameObject);
 
@@ -102,13 +103,6 @@ public class GridManager : MonoBehaviour
 		Debug.Log("Done Generating");
 	}
 #endif
-
-	private void SetUpCamToGrid()
-	{
-		mainCamera.orthographicSize = elementsInRow * 4 / 5;
-		this.transform.localPosition = new Vector3((-elementsInRow), 0, rows * (rows > 6 ? 5.5f / 11 : 22 / 100));
-
-	}
 
 	private GameObject CreateContainerForRow(int row)
 	{
